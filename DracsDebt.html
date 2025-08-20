@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DayZ Debt Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for DayZ vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Staatliches', Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 2px 2px 6px #000;
+    }
+    .container {
+      background: rgba(30,30,30,0.8);
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 0 24px 10px #000;
+      text-align: center;
+      max-width: 400px;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+    .amount {
+      font-size: 3em;
+      font-weight: bold;
+      color: #e53935;
+      margin: 20px 0;
+      text-shadow: 2px 2px 10px #222;
+    }
+    .desc {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      color: #ddd;
+    }
+    .zombie {
+      width: 360px;
+      margin-bottom: 20px;
+    }
+    footer {
+      margin-top: 30px;
+      color: #bbb;
+      font-size: 1em;
+      text-shadow: none;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 10px;
+        max-width: 95vw;
+      }
+      .amount {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="zombie" src="zombie.png" alt="Zombie">
+    <h1>DayZ Debt Tracker</h1>
+    <div class="desc">
+      Dracs you owe me money.<br>
+      The debt increases every hour. Survive the grind!
+    </div>
+    <div class="amount" id="amount"></div>
+    <footer>
+      <span id="since"></span>
+    </footer>
+  </div>
+  <script>
+    // Set the start time (customize if needed)
+    const startDate = new Date('2025-08-19T18:00:00Z'); // Example: today at midnight UTC
+    const startAmount = 80000;
+    const incrementPerHour = 1000;
+
+    function updateAmount() {
+      const now = new Date();
+      // Calculate hours elapsed (UTC)
+      const elapsedMs = now - startDate;
+      const elapsedHours = Math.floor(elapsedMs / (1000 * 60 * 60));
+      const currentAmount = startAmount + (elapsedHours * incrementPerHour);
+      document.getElementById('amount').textContent = currentAmount.toLocaleString() + ' ₽';
+      document.getElementById('since').textContent = `Counting since ${startDate.toUTCString()}`;
+    }
+
+    updateAmount();
+    // Update every minute so it's always fresh
+    setInterval(updateAmount, 60000);
+  </script>
+</body>
+</html>
