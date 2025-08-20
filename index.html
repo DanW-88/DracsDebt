@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <title>DayZ Debt Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Discord/OG/Twitter Meta Tags -->
+  <meta property="og:title" content="DayZ Debt Tracker" />
+  <meta property="og:description" content="Dracs owes me ₽. The debt increases every hour. Survive the grind!" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/DanW-88/dayz-debt-tracker/main/zombie.png" />
+  <meta property="og:url" content="https://danw-88.github.io/dayz-debt-tracker/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DayZ Debt Tracker" />
+  <meta name="twitter:description" content="Dracs owes me ₽. The debt increases every hour. Survive the grind!" />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/DanW-88/dayz-debt-tracker/main/zombie.png" />
   <!-- Google Fonts for DayZ vibe -->
   <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
   <style>
@@ -82,13 +91,12 @@
   </div>
   <script>
     // Set the start time (customize if needed)
-    const startDate = new Date('2025-08-19T18:00:00Z'); // Example: today at midnight UTC
+    const startDate = new Date('2025-08-19T18:00:00Z');
     const startAmount = 80000;
     const incrementPerHour = 1000;
 
     function updateAmount() {
       const now = new Date();
-      // Calculate hours elapsed (UTC)
       const elapsedMs = now - startDate;
       const elapsedHours = Math.floor(elapsedMs / (1000 * 60 * 60));
       const currentAmount = startAmount + (elapsedHours * incrementPerHour);
@@ -97,7 +105,6 @@
     }
 
     updateAmount();
-    // Update every minute so it's always fresh
     setInterval(updateAmount, 60000);
   </script>
 </body>
